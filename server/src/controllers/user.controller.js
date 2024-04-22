@@ -57,13 +57,13 @@ class User {
           res.status(200).json({
             success: true,
             message: "Login Successful",
-            userData
+            user
           });
         }
 
         // Case: User is NOT Verified via OAuth
         else {
-          const res = await userData.updateOne({
+          const res = await user.updateOne({
             OAuth: true,
             isVerified: true,
             photoURL: photoURL

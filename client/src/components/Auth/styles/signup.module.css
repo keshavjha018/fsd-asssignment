@@ -1,0 +1,120 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 300px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.closeIcon {
+  margin-left: 95%;
+  padding: 0px;
+  cursor: pointer;
+}
+
+.heading {
+  color: #8851FB;
+  margin-bottom: 20px;
+  margin-top: 0px;
+}
+
+.label {
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.emailIn, .passIn {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.signupBtn {
+  padding: 10px;
+  background-color: #8851FB;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.alreadyVerifiedTxt {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.loginBtn {
+  color: #8851FB;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+/* GOOGLE SIGN IN */
+
+.alternative {
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+  font-weight: 0.5 rem;
+  font-size: small;
+}
+
+.alt_line {
+  height: 1px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+  width: 3.5rem
+    /* 56px */
+  ;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+
+.google_btn {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding: 2px;
+  height: 35px;
+  background-color: #fcfcfc;
+  border: 1px solid rgb(218, 218, 218);
+  border-radius: 5px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .2);
+  cursor: pointer;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  transition: all 400ms ease 0s;
+  display: flex;
+  justify-content:center;
+}
+
+.google_icon_svg {
+  height: 28px;
+  width: 28px;
+  margin-right: 10px;
+}
+
+.btn_text {
+  color: rgb(99, 99, 99);
+  font-weight: 500;
+}
+
+.google_btn:hover {
+  box-shadow: 0 3px 8px rgba(117, 117, 117, .5);
+  user-select: none
+}
+.google_btn:active {
+  box-shadow: 0 1px 1px #757575;
+  background: #F8F8F8;
+  color: #fff;
+  user-select: none
+}

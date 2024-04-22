@@ -12,9 +12,9 @@ userRouter.get("/get/:id", async (req, res) => { User.getUser(req, res) });
 userRouter.post("/register", async (req, res) => { User.signup(req, res) });
 
 // Login 
-authRouter.post("/login", async (req, res) => { Auth.UserLogin(req, res) });
+userRouter.post("/login", async (req, res) => { User.login(req, res) });
 
 // Google Login 
-authRouter.post("/googlelogin", async (req, res) => { Auth.GoogleLogin(req, res) });
+userRouter.post("/googlelogin", async (req, res) => { User.GoogleLogin(req, res) });
 
 module.exports = userRouter;
