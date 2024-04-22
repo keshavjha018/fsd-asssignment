@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    default: "Default Name"
+  },
+  
   email: {
     type: String,
     required: true,
@@ -8,8 +13,11 @@ const userSchema = new mongoose.Schema({
   },
 
   password: {
-      type: String,
-      default:""
+    type: String
+  },
+
+  photoURL: {
+    type: String
   },
 
   OAuth: {
