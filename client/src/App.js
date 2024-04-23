@@ -37,7 +37,7 @@ function App() {
           <Route path="/" element={<ProtectRoute> <Project /> </ProtectRoute>} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/profile" element={<ProtectRoute> <Profile /> </ProtectRoute>} />
-          <Route path="/projects/:id" element={<ProtectRoute> <ProjectPreview /> </ProtectRoute>} />
+          <Route path="/project/:id" element={<ProtectRoute> <ProjectPreview /> </ProtectRoute>} />
 
         </Routes>
         <Footer />

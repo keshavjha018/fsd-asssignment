@@ -26,6 +26,28 @@ class Project {
     }
   }
 
+  async deleteProject(req, res) {
+    try {
+      const { id } = req.params;
+      console.log(id);
+
+      await Projects.findByIdAndDelete(id);
+
+      // Success
+      res.status(201).json({
+        success: true,
+        message: "Successfully Deleted the Project"
+      });
+    }
+    catch (error) {
+      res.status(404).json({
+        success: false,
+        message: "Can't Delete Project"
+      })
+      console.log(error);
+    }
+  }
+
   // get all project of a user
   async getAllProjects(req, res) {
     try {
@@ -39,7 +61,7 @@ class Project {
       res.status(201).json({
         success: true,
         message: "Successfully fetched All Projects",
-        collegeData: projects
+        body: projects
       });
     } catch(error) {
       res.status(404).json({
@@ -54,8 +76,9 @@ class Project {
   async createProject(req, res) {
     try {
       const { name, userId } = req.body;
+      console.log(req.body);
 
-      const projects = await Projects.create({
+      const project = await Projects.create({
         name,
         owner: userId
       });
@@ -64,7 +87,7 @@ class Project {
       res.status(201).json({
         success: true,
         message: "Successfully added Project",
-        body: projects
+        body: project
       });
     }
     
