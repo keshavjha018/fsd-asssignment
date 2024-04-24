@@ -1,6 +1,7 @@
 //Controllers for Project class
 
 const Projects = require("./../../db/models/project.schema");
+const Components = require("./../../db/models/component.schema");
 
 class Project {
 
@@ -31,7 +32,13 @@ class Project {
       const { id } = req.params;
       console.log(id);
 
+      // Delete project
       await Projects.findByIdAndDelete(id);
+
+      // Delete all comp of that project
+      await Components.deleteMany({
+        project: id
+      })
 
       // Success
       res.status(201).json({
