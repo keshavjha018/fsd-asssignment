@@ -67,6 +67,29 @@ class Component {
     }
   }
 
+  // delete component
+  async deleteComponents(req, res) {
+    try {
+      const { componentId } = req.params;
+      console.log(componentId);
+
+      const data = await Components.findByIdAndDelete(componentId);
+
+      // Success
+      res.status(201).json({
+        success: true,
+        message: "Successfully deleted"
+      });
+    } 
+    catch(error) {
+      res.status(404).json({
+        success: false,
+        message: "Some Error Occured"
+      })
+      console.log(error);
+    }
+  }
+
 }
 
 module.exports = Component;

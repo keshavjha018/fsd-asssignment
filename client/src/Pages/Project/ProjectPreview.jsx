@@ -16,6 +16,8 @@ import CustomInput from '../../components/Input/CustomInput';
 import CustomSelect from '../../components/Select/CustomSelect';
 import toast from 'react-hot-toast';
 import LoadingSpinner from '../../components/Others/LoadingSpinner';
+import { MdDeleteOutline } from "react-icons/md";
+
 
 
 function ProjectPreview() {
@@ -23,6 +25,7 @@ function ProjectPreview() {
   const params = useParams();
   const [isSaving, setIsSaving] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [thisProject, setThisProject] = useState(null);
   const [selectedComp, setSelectedComp] = useState(null);
   const [components, setComponents] = useState([]);
@@ -124,6 +127,30 @@ function ProjectPreview() {
       setIsSaving(false);
       toast.error("Server Error");
       console.log(err);
+    }
+  }
+
+  async function handleDeleteComp() {
+    const idToDelete = selectedComp._id;
+
+    try {
+      setIsDeleting(true);
+      const res = await axios.delete(`${process.env.REACT_APP_BACKEND}/api/comp/delete/${idToDelete}`);
+      setIsDeleting(false);
+
+      if (false == res?.status?.success) {
+        toast.error("Component Delete Failed");
+        
+      } else {
+        toast.success("Component Deleted");
+        const updatedComponents = components.filter(ele => ele._id != idToDelete);
+        setComponents(updatedComponents);
+        setSelectedComp(null);
+      }
+    } catch(err) {
+      setIsDeleting(false);
+      console.log(err);
+      toast.error("Server Error")
     }
   }
 
@@ -463,6 +490,14 @@ function ProjectPreview() {
                     handleChangeComponent();
                   }}
                 />
+                </div>
+              }
+
+              {/* DEL COMP */}
+              {isDeleting ? <LoadingSpinner /> :
+                <div className={styles.deleteCompBtn} onClick={handleDeleteComp}>
+                  <MdDeleteOutline className={styles.addCompIcon} />
+                  <div className={styles.addProjTxt}> Delete </div>
                 </div>
               }
               

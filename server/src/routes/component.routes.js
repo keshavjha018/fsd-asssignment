@@ -8,5 +8,6 @@ const Component = new Components();
 
 componentRouter.post("/save", async (req, res) => { Component.saveAllComponents(req, res) });
 componentRouter.get("/getall/:projectId", async (req, res) => { Component.getAllComponents(req, res) });
+componentRouter.delete("/delete/:componentId", async (req, res) => { Component.deleteComponents(req, res) });
 
 module.exports = componentRouter;
