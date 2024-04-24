@@ -1,10 +1,13 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import styles from "./home.module.css"
 import Nav from '../../components/Navbar/Nav'
 import Typewriter from "typewriter-effect";
 import "./typewriter.css"
 
 function Home() {
+  const navigate = useNavigate();
+
   return (
     <>
       <Nav />
@@ -36,7 +39,7 @@ function Home() {
           This is a Full-Stack web application <b>Assignment</b>, developed By <b>Keshav Jha</b>
         </div>
 
-        <div className={styles.projBtn}>
+        <div className={styles.projBtn} onClick={(e) => navigate("/project")}>
           Get Started
         </div>
 
