@@ -7,7 +7,7 @@ class Component {
   // get all component of a user
   async getAllComponents(req, res) {
     try {
-      const { projectId } = req.body;
+      const { projectId } = req.params;
 
       const components = await Components.find({
         project: projectId
@@ -30,22 +30,31 @@ class Component {
   }
 
   // add new component
-  async createComponent(req, res) {
+  async saveAllComponents(req, res) {
     try {
-      const { _id, name, type, userId } = req.body;
+      const { allComponents } = req.body;
 
-      const component = await Components.create({
-        _id,
-        name,
-        type,
-        owner: userId
-      });
+      // TODO: Another better approach can be implemented
+      // To Update only those component which has been edited.
+      allComponents?.map(async(comp) => {
+        // Check if component already exists
+        const myComp = await Components.findById(comp._id);
+        
+        if (!myComp) {
+          // If no component found => Create New
+          await Components.create(comp);
+        }
+        else {
+          // Update
+          myComp.set(comp);
+          await myComp.save();
+        }
+      })
 
       // Success
       res.status(201).json({
         success: true,
-        message: "Successfully added Component",
-        body: component
+        message: "Successfully added all Components"
       });
     }
     

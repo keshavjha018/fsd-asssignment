@@ -15,32 +15,58 @@ import CustomButton from "../../components/Button/CustomButton"
 import CustomInput from '../../components/Input/CustomInput';
 import CustomSelect from '../../components/Select/CustomSelect';
 import toast from 'react-hot-toast';
+import LoadingSpinner from '../../components/Others/LoadingSpinner';
 
 
 function ProjectPreview() {
 
   const params = useParams();
+  const [isSaving, setIsSaving] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [thisProject, setThisProject] = useState(null);
   const [selectedComp, setSelectedComp] = useState(null);
   const [components, setComponents] = useState([]);
 
-  useEffect(() => {
-    async function fetchProjDetails() {
-      const projectId = params.id;
-      try {
-        const res = await axios.get(`${process.env.REACT_APP_BACKEND}/api/project/get/${projectId}`);
+  async function fetchProjDetails() {
+    const projectId = params.id;
+    try {
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND}/api/project/get/${projectId}`);
 
-        if (false == res?.data?.success) {
-          toast.error(res.data.message);
-          return;
-        }
-        // console.log(res?.data?.body);
-        setThisProject(res?.data?.body);
-      } catch(err) {
-        toast.error("Server Error");
-        console.log(err);
+      if (false == res?.data?.success) {
+        toast.error(res.data.message);
+        return;
       }
+      // console.log(res?.data?.body);
+      setThisProject(res?.data?.body);
+    } catch(err) {
+      toast.error("Server Error");
+      console.log(err);
     }
+  }
+
+  async function fetchAllComponents() {
+    const projectId = params.id;
+    try {
+      setIsLoading(true);
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND}/api/comp/getall/${projectId}`);
+
+      if (false == res?.data?.success) {
+        toast.error(res.data.message);
+        setIsLoading(false);
+        return;
+      }
+      // console.log(res?.data?.body);
+      setIsLoading(false)
+      setComponents(res?.data?.body);
+    } catch(err) {
+      setIsLoading(false)
+      toast.error("Server Error");
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    fetchAllComponents();
     fetchProjDetails();
   },[])
 
@@ -53,6 +79,7 @@ function ProjectPreview() {
     const newComponent = {
       _id: newId,
       name: `Component #${components.length + 1}`,
+      project: params.id,
       type: type,
       styles: {
         height: 55,
@@ -65,7 +92,7 @@ function ProjectPreview() {
         paddingX: 0,
         paddingY: 0,
       },
-      options: ["Option 1", "Option 2", "Option 3"]
+      options: []
     }
 
     setComponents([...components, newComponent]);
@@ -76,13 +103,31 @@ function ProjectPreview() {
       component._id == selectedComp._id ? selectedComp : component
     );
 
-    console.log(updatedComponents);
+    // console.log(updatedComponents);
 
     setComponents(updatedComponents)
   }
 
   async function handleSaveChanges() {
     // Save to database
+    try {
+      setIsSaving(true)
+      const res = await axios.post(`${process.env.REACT_APP_BACKEND}/api/comp/save`, {
+        allComponents: components
+      });
+
+      if (false == res?.status?.success) {
+        toast.error("Project Save Failed");
+      } else {
+        toast.success("Project Saved");
+      }
+
+      setIsSaving(false);
+    } catch (err) {
+      setIsSaving(false);
+      toast.error("Server Error");
+      console.log(err);
+    }
   }
 
   return (
@@ -90,10 +135,11 @@ function ProjectPreview() {
     <Nav/>
     <div className={styles.wrapper}>
       
-      <div className={styles.head}>
-        
-      </div>
+      {/* <div className={styles.head}>
+        Head
+      </div> */}
 
+      {isLoading ? <LoadingSpinner/> :
       <div className={styles.componentsHeadWrapper}>
 
         <div className={styles.compWrapper}>
@@ -117,11 +163,10 @@ function ProjectPreview() {
         </div>
         
         {/* COMPONENT EDITOR */}
-        
-        {selectedComp &&
-          <div className={styles.editorWrapper}>
-            <span className={styles.editorHeading}>LIVE Component Editor</span>
-
+        <div className={styles.editorWrapper}>
+          <span className={styles.editorHeading}>LIVE Editor</span>
+          <span className={styles.editorSubHeading}>Select a Component to Edit</span>
+          {selectedComp &&
             <div className={styles.editOptions}>
 
               {/* COMPONENT NAME */}
@@ -408,16 +453,18 @@ function ProjectPreview() {
               }
               
               {/* SAVE CHANGES */}
-              <div className={styles.addCompBtn} onClick={(e)=>handleSaveChanges}>
-                <FaRegSave className={styles.addCompIcon} />
-                <div className={styles.addProjTxt}>Save Changes</div>
-              </div>
+              {isSaving ? <LoadingSpinner /> :
+                <div className={styles.addCompBtn} onClick={handleSaveChanges}>
+                  <FaRegSave className={styles.addCompIcon} />
+                  <div className={styles.addProjTxt}>Save Changes</div>
+                </div>
+              }
             </div>
-
-          </div>
-        }
+          }
+        </div>
       
       </div>
+      }
 
     </div>
     </>

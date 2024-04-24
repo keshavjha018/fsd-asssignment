@@ -36,7 +36,9 @@
 
 .projectTitle {
   align-self: center;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 10px;
 }
 
 .componentsHeadWrapper {
@@ -76,10 +78,18 @@
 }
 
 .editorHeading {
-  margin-bottom: 20px;
+  margin-bottom: 2px;
   font-size: 17px;
   align-self: center;
   font-weight: 600;
+}
+
+.editorSubHeading {
+  margin-top: -15px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: grey;
+  align-self: center;
 }
 
 .editOptions {
