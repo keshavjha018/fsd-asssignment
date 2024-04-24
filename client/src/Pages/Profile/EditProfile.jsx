@@ -75,16 +75,13 @@ export default function EditProfile({user, setShowDialog, showDialog}) {
       >
         <DialogTitle> Edit Profile </DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Name
-          </DialogContentText>
           <TextField
             autoFocus
             required
             margin="dense"
             id="name"
             name="name"
-            label="Project Title"
+            label="Name"
             type="text"
             fullWidth
             variant="standard"
@@ -94,16 +91,13 @@ export default function EditProfile({user, setShowDialog, showDialog}) {
         </DialogContent>
         
         <DialogContent>
-          <DialogContentText>
-            Email
-          </DialogContentText>
           <TextField
             autoFocus
             required
             margin="dense"
             id="name"
             name="name"
-            label="Project Title"
+            label="Email"
             type="text"
             fullWidth
             variant="standard"
