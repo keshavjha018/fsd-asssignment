@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useParams } from 'react-router-dom';
 import Nav from '../../components/Navbar/Nav'
 import styles from "./projPrev.module.css"
@@ -26,6 +26,8 @@ function ProjectPreview() {
   const [thisProject, setThisProject] = useState(null);
   const [selectedComp, setSelectedComp] = useState(null);
   const [components, setComponents] = useState([]);
+  const timerRef = useRef(null);
+
 
   async function fetchProjDetails() {
     const projectId = params.id;
@@ -65,12 +67,7 @@ function ProjectPreview() {
     }
   }
 
-  useEffect(() => {
-    fetchAllComponents();
-    fetchProjDetails();
-  },[])
-
-  // Create default compont => Will Edit later
+  // Create default component => Will Edit later
   function createNewComponent(type) {
     console.log('Creating New Component');
 
@@ -130,6 +127,33 @@ function ProjectPreview() {
     }
   }
 
+  useEffect(() => {
+    fetchAllComponents();
+    fetchProjDetails();
+  },[])
+
+  useEffect(() => {
+    const handleUserActivity = () => {
+      clearTimeout(timerRef.current); // Reset timer
+      timerRef.current = setTimeout(() => {
+        handleSaveChanges(); // Trigger auto-save
+      }, 4000);              // Auto Save after
+    };
+
+    const componentDiv = document.getElementById('componentEditorToolbox');
+    if (componentDiv) {
+      componentDiv.addEventListener('click', handleUserActivity);
+    }
+
+    // Clear timers
+    return () => {
+      clearTimeout(timerRef.current);
+      if (componentDiv) {
+        componentDiv.removeEventListener('click', handleUserActivity);
+      }
+    };
+  }, [components]);
+
   return (
     <>
     <Nav/>
@@ -167,7 +191,7 @@ function ProjectPreview() {
           <span className={styles.editorHeading}>LIVE Editor</span>
           <span className={styles.editorSubHeading}>Select a Component to Edit</span>
           {selectedComp &&
-            <div className={styles.editOptions}>
+            <div className={styles.editOptions} id='componentEditorToolbox'>
 
               {/* COMPONENT NAME */}
               <TextField 

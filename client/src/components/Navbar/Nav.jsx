@@ -28,6 +28,7 @@ function Nav() {
     //Clear Local Storage
     localStorage.clear();
     setUser(null);
+    navigate(`/`);
     toast.success("Logged Out Successfully !")
   }
 
