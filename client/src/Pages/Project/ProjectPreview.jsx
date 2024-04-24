@@ -133,24 +133,14 @@ function ProjectPreview() {
   },[])
 
   useEffect(() => {
-    const handleUserActivity = () => {
-      clearTimeout(timerRef.current); // Reset timer
-      timerRef.current = setTimeout(() => {
-        handleSaveChanges(); // Trigger auto-save
-      }, 4000);              // Auto Save after
-    };
+    clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      handleSaveChanges();
+    }, 5000);
 
-    const componentDiv = document.getElementById('componentEditorToolbox');
-    if (componentDiv) {
-      componentDiv.addEventListener('click', handleUserActivity);
-    }
-
-    // Clear timers
+    // Clear
     return () => {
       clearTimeout(timerRef.current);
-      if (componentDiv) {
-        componentDiv.removeEventListener('click', handleUserActivity);
-      }
     };
   }, [components]);
 
@@ -191,7 +181,7 @@ function ProjectPreview() {
           <span className={styles.editorHeading}>LIVE Editor</span>
           <span className={styles.editorSubHeading}>Select a Component to Edit</span>
           {selectedComp &&
-            <div className={styles.editOptions} id='componentEditorToolbox'>
+            <div className={styles.editOptions}>
 
               {/* COMPONENT NAME */}
               <TextField 
@@ -478,11 +468,13 @@ function ProjectPreview() {
               
               {/* SAVE CHANGES */}
               {isSaving ? <LoadingSpinner /> :
-                <div className={styles.addCompBtn} onClick={handleSaveChanges}>
+                <div className={styles.saveCompBtn} onClick={handleSaveChanges}>
                   <FaRegSave className={styles.addCompIcon} />
                   <div className={styles.addProjTxt}>Save Changes</div>
                 </div>
               }
+
+              <span className={styles.note}> Note: Autosave happens after 5 seconds of user inactivity.</span>
             </div>
           }
         </div>

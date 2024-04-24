@@ -11,7 +11,7 @@
   margin: 10px 0px 20px 0px;
 }
 
-.addCompBtn {
+.addCompBtn, .saveCompBtn {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -28,6 +28,12 @@
   &:hover {
     cursor: pointer;
   }
+}
+
+.addCompBtn {
+  margin-top: 50px;
+  bottom: 0px;
+  position: relative;
 }
 
 .addCompIcon {
@@ -97,4 +103,10 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 20px;
+}
+
+.note {
+  font-size: 14px;
+  color: rgb(140, 140, 140);
+  font-weight: 600;
 }
