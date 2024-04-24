@@ -18,7 +18,7 @@
 }
 
 .heading {
-  color: #8851FB;
+  color: #000000;
   margin-bottom: 20px;
   margin-top: 0px;
 }
@@ -37,7 +37,7 @@
 
 .signupBtn {
   padding: 10px;
-  background-color: #8851FB;
+  background-color: #000000;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -50,7 +50,7 @@
 }
 
 .loginBtn {
-  color: #8851FB;
+  color: #000000;
   text-decoration: none;
   cursor: pointer;
 }

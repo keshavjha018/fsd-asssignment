@@ -49,11 +49,11 @@ function Signup({ setRegister, handleGoogleSignin }) {
       <AiOutlineCloseCircle className={styles.closeIcon} onClick={()=> setShowLoginPopup(false)}/>
        <h2 className={styles.heading}> Sign Up </h2>
 
-      <label className={styles.label} >Email 🔒</label>
+      <label className={styles.label} >Email</label>
       <input 
         className={styles.emailIn} 
         type="text"
-        placeholder="Your email always remains fully encrypted."
+        placeholder="eg: john@email.com"
         required
         value={email}
         onChange={(e)=> setEmail(e.target.value)}
@@ -63,7 +63,7 @@ function Signup({ setRegister, handleGoogleSignin }) {
       <input 
         className={styles.passIn} 
         type="password" 
-        placeholder="Not even developer can see who are you"
+        placeholder="Remains fully encrypted"
         required
         value={password}
         onChange={(e)=> setPassword(e.target.value)}

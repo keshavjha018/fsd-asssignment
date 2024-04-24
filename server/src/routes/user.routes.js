@@ -17,4 +17,6 @@ userRouter.post("/login", async (req, res) => { User.login(req, res) });
 // Google Login 
 userRouter.post("/googlelogin", async (req, res) => { User.GoogleLogin(req, res) });
 
+userRouter.post("/update", async (req, res) => { User.updateUser(req, res) });
+
 module.exports = userRouter;

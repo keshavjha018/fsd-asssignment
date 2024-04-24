@@ -4,7 +4,9 @@ import LoginSignUp from '../Auth/LoginSignUp';
 import './Nav.css'
 import Logo from "../../Assets/logo.png"
 import { HiOutlineHome } from 'react-icons/hi';
+import { GoProjectSymlink } from "react-icons/go";
 import { GoInfo } from 'react-icons/go';
+import { IoMdExit } from "react-icons/io";
 import { LiaUserSecretSolid } from 'react-icons/lia';
 import toast from "react-hot-toast"
 import AuthContext from '../../Contexts/AuthContext';
@@ -40,10 +42,14 @@ function Nav() {
       <div className="navbarRight">
 
         <NavLink to="/" className="navBtn" > 
-          Projects <HiOutlineHome className='navBtnIcon' /> 
+          Home <HiOutlineHome className='navBtnIcon' /> 
         </NavLink>
 
-        <NavLink to="/about" className="navBtn" > 
+        <NavLink to="/project" className="navBtn" > 
+          Projects <GoProjectSymlink className='navBtnIcon' /> 
+        </NavLink>
+
+        <NavLink to="/profile" className="navBtn" > 
           Profile <GoInfo className='navBtnIcon' />
         </NavLink>
 
@@ -53,7 +59,7 @@ function Nav() {
           </div>
           :
           <div onClick={(e)=> handleLogout(e)} className="navBtn" > 
-            Logout <LiaUserSecretSolid className='navBtnIcon' /> 
+            Logout <IoMdExit className='navBtnIcon' /> 
           </div>
         }
 

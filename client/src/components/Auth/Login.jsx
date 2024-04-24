@@ -34,7 +34,8 @@ function Login({ setRegister, handleGoogleSignin }) {
         // Store User data in LocalStorage
         let userInfoData = {
           id: res.data.userId,
-          email: res.data.email
+          email: res.data.email,
+          name: res.data.name
         }
         localStorage.setItem("user", JSON.stringify(userInfoData));
         setUser(userInfoData);

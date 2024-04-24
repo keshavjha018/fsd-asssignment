@@ -4,6 +4,8 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 1) 85%), radial-gradient(ellipse at top left, rgba(13, 110, 253, 0.2), transparent 50%), radial-gradient(ellipse at top right, rgba(225, 228, 132, 0.2), transparent 50%), radial-gradient(ellipse at center right, rgba(112.520718,44.062154,249.437846, 0.2), transparent 50%), radial-gradient(ellipse at center left, rgba(214, 51, 132, 0.2), transparent 50%) !important;
+
 }
 
 .head {
@@ -53,6 +55,7 @@
   border: 1px solid rgb(184, 184, 184);
   border-radius: 5px;
   transition: 0.1s all ease-in-out;
+  background-color: white;
 
   &:hover {
     cursor: pointer;
@@ -60,7 +63,7 @@
 }
 
 .projOps {
-  width: 80px;
+  width: 120px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -69,18 +72,20 @@
 .editProjIcon,
 .deleteProjIcon {
   font-size: 20px;
-  border: 1px solid rgb(174, 174, 174);
-  padding: 5px;
+  background-color: rgb(44, 44, 44);
+  color: white;
+  padding: 8px;
   border-radius: 5px;
-  transition: 0.2s all ease-in;
+  transition: 0.1s all ease-in;
 
   &:hover {
-    background-color: rgb(186, 186, 186);
+    background-color: rgb(0, 0, 0);
+    padding: 9px;
   }
 }
 
 .editProjIcon {
-  margin-right: 3px;
+  margin-right: 10px;
 }
 
 .projectName {

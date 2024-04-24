@@ -23,7 +23,8 @@ function LoginSignUp() {
         // Store User data in LocalStorage
         let userInfoData = {
           id: res.data?.user?._id,
-          email: res.data?.user?.email
+          email: res.data?.user?.email,
+          name: res.data?.user?.name
         }
 
         localStorage.setItem("user", JSON.stringify(userInfoData));

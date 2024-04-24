@@ -7,7 +7,8 @@ import {
   Project, 
   ProjectPreview, 
   Auth, 
-  Profile 
+  Profile,
+  Home
 } from "./Pages"
 
 import Footer from './components/Footer/Footer';
@@ -34,9 +35,10 @@ function App() {
       <Router>
         <Routes>
 
-          <Route path="/" element={<ProtectRoute> <Project /> </ProtectRoute>} />
+          <Route path="/" element={<Home />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/profile" element={<ProtectRoute> <Profile /> </ProtectRoute>} />
+          <Route path="/project" element={<ProtectRoute> <Project /> </ProtectRoute>} />
           <Route path="/project/:id" element={<ProtectRoute> <ProjectPreview /> </ProtectRoute>} />
 
         </Routes>

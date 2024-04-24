@@ -158,6 +158,27 @@ class User {
     }
   }
 
+  async updateUser(req, res) {
+    const { id, name, email } = req.body;
+    try {
+      const user = await Users.findByIdAndUpdate(id, {
+        name: name,
+        email: email,
+      });
+
+      console.log(user);
+      
+      res.status(200).json({
+        success: true,
+        message: "Login Successful"
+      });
+
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ success: false, message: "Server Error" });
+    }
+  }
+
 }
 
 module.exports = User;
