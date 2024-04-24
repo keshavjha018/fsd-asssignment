@@ -493,6 +493,8 @@ function ProjectPreview() {
                 </div>
               }
 
+              <div className={styles.buttonWrapper}>
+
               {/* DEL COMP */}
               {isDeleting ? <LoadingSpinner /> :
                 <div className={styles.deleteCompBtn} onClick={handleDeleteComp}>
@@ -508,6 +510,8 @@ function ProjectPreview() {
                   <div className={styles.addProjTxt}>Save Changes</div>
                 </div>
               }
+
+              </div>
 
               <span className={styles.note}> Note: Autosave happens after 5 seconds of user inactivity.</span>
             </div>

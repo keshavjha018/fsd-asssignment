@@ -109,6 +109,12 @@
   gap: 20px;
 }
 
+.buttonWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .note {
   font-size: 14px;
   color: rgb(140, 140, 140);
