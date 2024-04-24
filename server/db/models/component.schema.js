@@ -20,10 +20,13 @@ const componentSchema = new mongoose.Schema({
   },
 
   styles: {
-    backgroundColor: {type: String},
-    textColor: {type: String},
-    borderColor: {type: String},
+    height: {type: Number, default: 55},
+    width: {type: Number, default: 100},
+    backgroundColor: {type: String, default: "white"},
+    textColor: {type: String, default: "black"},
+    borderColor: {type: String, default: "white"},
     borderRadius: { type: Number, default: 1 },
+    margin: {type: Number, default: 0},
     paddingX: { type: Number, default: 0 },
     paddingY: { type: Number, default: 0 },
   },

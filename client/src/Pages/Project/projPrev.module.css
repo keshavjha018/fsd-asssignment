@@ -1,0 +1,90 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 70vh;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 10px 0px 20px 0px;
+}
+
+.addCompBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border: 1px solid rgb(184, 184, 184);
+  padding: 5px;
+  border-radius: 5px;
+  width: 160px;
+  height: 35px;
+  transition: 0.4s ease-in-out;
+  background-color: black;
+  color: white;
+  user-select: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.addCompIcon {
+  font-size: large;
+}
+
+.projectTitle {
+  align-self: center;
+  font-size: 16px;
+}
+
+.componentsHeadWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 5px;
+}
+
+.compWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 10px;
+  width: 60%;
+  border: 1px solid rgb(151, 151, 151);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.optionWrapper {
+  border: 1px solid rgb(174, 174, 174);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.editorWrapper {
+  margin-top: 10px;
+  padding: 20px 10px 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  width: 35%;
+  border: 1px solid rgb(188, 188, 188);
+  border-radius: 5px;
+  gap: 25px;
+}
+
+.editorHeading {
+  margin-bottom: 20px;
+  font-size: 17px;
+  align-self: center;
+  font-weight: 600;
+}
+
+.editOptions {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
